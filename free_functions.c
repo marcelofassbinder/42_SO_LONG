@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/21 18:32:00 by mfassbin         ###   ########.fr       */
+/*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
+/*   Updated: 2024/01/21 16:11:12 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	error_message(char *str, t_map map)
 {
-	t_map	map;
-	t_game	game;
-	int		fd;
+	char **map_array;
+	int i;
 
-	(void)game;
-	if(check_input(argc, argv) != 1)
-		exit(2);
-	fd = open(argv[1], O_RDONLY);
-	map = init_map(fd);
-	if(check_map(map) == 1)
-		print_map(map);
-	game = init_game(map);
-	render_first_image(game);
-
-}	
+	map_array = map.map_array;
+	i = 0;
+	while(map_array[i])
+	{
+		free(map_array[i]);
+		i++;
+	}
+	free(map_array);
+	return(ft_printf(2, "Error!\n%s", str));
+}
