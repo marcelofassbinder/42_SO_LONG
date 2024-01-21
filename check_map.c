@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:21:10 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/20 16:35:17 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:08:25 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,29 @@ int	check_map(t_map map)
 	int i;
 
 	if (map.line < 3 || map.column < 3)
-		return(ft_printf(2, "Error! Map contains less than 3 lines/columns.\n"));
+		return(error_message("Map contains less than 3 lines/columns.\n", map));
+	else if (map.players != 1 || map.exit != 1 || map.coins < 1)
+			return (error_message("Map must contain just 1 player, 1 exit and at least 1 collectible.\n", map));
+	else if (!invalid_char(map))
+		return(error_message("Invalid character found.\n", map));
+	else if (!surrounded_by_walls(map))
+		return(error_message("Map must be surrounded by walls.\n", map));
 	i = 0;
 	while(map.map_array[i])
 	{
 		if(ft_strlen(map.map_array[i]) != map.column)
-			return(ft_printf(2, "Error! Map is not rectangular.\n"));
+			return(error_message("Map is not rectangular.\n", map));
 		i++;
 	}
-	if (count_appearance(map, PLAYER) != 1 || count_appearance(map, EXIT) != 1 || 
-		count_appearance(map, COLLECTIBLE) < 1)
-			return (ft_printf(2, "Error! Map must contain just 1 player, 1 exit and at least 1 collectible.\n"));
-	if (!invalid_char(map))
-		return(ft_printf(2, "Error! Invalid character found.\n"));
-	if (!surrounded_by_walls(map))
-		return(ft_printf(2, "Error! Map must be surrounded by walls.\n"));
 	return (1);
 }
 
 int	count_appearance(t_map map, char c)
 {
-	int i;
-	int j;
-	int counter;
-	char **map_array;
+	char 	**map_array;
+	int 	i;
+	int 	j;
+	int 	counter;
 
 	map_array = map.map_array;
 	counter = 0;
@@ -61,9 +60,9 @@ int	count_appearance(t_map map, char c)
 
 int invalid_char(t_map map)
 {
-	int i;
-	int j;
-	char **map_array;
+	char 	**map_array;
+	int 	i;
+	int		j;
 
 	map_array = map.map_array;
 	i = 0;
@@ -84,9 +83,9 @@ int invalid_char(t_map map)
 }
 int	surrounded_by_walls(t_map map)
 {
-	int i;
-	int j;
-	char **map_array;
+	char 	**map_array;
+	int 	i;
+	int 	j;
 
 	map_array = map.map_array;
 	j = 0;
@@ -105,4 +104,6 @@ int	surrounded_by_walls(t_map map)
 	}
 	return (1);
 }
+
+
 
