@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/21 18:36:57 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:31:38 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,6 @@ t_map	init_map(int fd)
 	return(map);
 }
 
-void	render_first_image(t_game game)
-{
-	int	line;
-	int	column;
-
-	line = 0;
-	while(line < game.map.line)
-	{
-		column = 0;
-		while(column < game.map.column)
-		{
-			render_sprite(game, column, line);
-			column += SIZE;
-		}
-		line += SIZE;
-	}
-}
-
-void	render_sprite(t_game game, int y, int x)
-{
-	char	**map_array;
-
-	map_array = game.map.map_array;
-	if (map_array[y][x] == WALL)
-		mlx_put_image_to_window(game.mlx_ptr, game.mlx_win, game.wall.xpm, x, y);
-	else if (map_array[y][x] == EMPTY)
-		mlx_put_image_to_window(game.mlx_ptr, game.mlx_win, game.floor.xpm, x, y);
-	else if (map_array[y][x] == EXIT)
-		mlx_put_image_to_window(game.mlx_ptr, game.mlx_win, game.exit.xpm, x, y);
-	else if (map_array[y][x] == COLLECTIBLE)
-		mlx_put_image_to_window(game.mlx_ptr, game.mlx_win, game.collectible.xpm, x, y);
-	else if (map_array[y][x] == PLAYER)
-		mlx_put_image_to_window(game.mlx_ptr, game.mlx_win, game.player_right.xpm, x, y);
-}
 t_game	init_game(t_map map)
 {	
 	t_game	game;
@@ -66,8 +32,15 @@ t_game	init_game(t_map map)
 	game.map = map;
 	game.mlx_ptr = mlx_init();
 	game.mlx_win = mlx_new_window(game.mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
-	mlx_loop(game.mlx_ptr);
-	game.player_right = new_sprite(game, "./textures/character.xpm");
+	game.player_right = new_sprite(game, "textures/player.xpm");
+	game.player_left = new_sprite(game, "textures/player.xpm");
+	game.player_up = new_sprite(game, "textures/player.xpm");
+	game.player_down = new_sprite(game, "textures/player.xpm");
+	game.wall = new_sprite(game, "textures/parede.xpm");
+	game.floor = new_sprite(game, "textures/floor.xpm");
+	game.exit = new_sprite(game, "textures/exit.xpm");
+	game.collectible = new_sprite(game, "textures/cheese.xpm");
+	//define_image_positions(game);
 	return(game);
 }
 
@@ -75,6 +48,8 @@ t_image	new_sprite(t_game game, char *path_to_xpm)
 {
 	t_image	new_sprite;
 
-	new_sprite.xpm = mlx_xpm_file_to_image(game.mlx_ptr, path_to_xpm, (int *)SIZE, (int *)SIZE);
+	new_sprite.xpm = mlx_xpm_file_to_image(game.mlx_ptr, path_to_xpm, &new_sprite.x, &new_sprite.y);
+	if (!new_sprite.xpm)
+		error_message("Couldn't find a image.\n", game.map);
 	return(new_sprite);	
 }
