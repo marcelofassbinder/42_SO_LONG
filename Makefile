@@ -1,5 +1,5 @@
 CFILES = ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c main.c check_input.c map.c \
-init_structs.c check_map.c free_functions.c
+init_structs.c check_map.c free_functions.c render.c
 OBJS = ${CFILES:.c=.o}
 RM = rm -rf
 CC = gcc

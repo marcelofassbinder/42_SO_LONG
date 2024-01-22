@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/21 18:32:00 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:31:40 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_map
 
 typedef struct s_image
 {
-	void	*xpm;
-	int		x;
-	int		y;
-}			t_image;
+	void		*xpm;
+	int			x;
+	int			y;
+}				t_image;
 
 typedef struct s_game
 {
@@ -77,11 +77,12 @@ int				count_appearance(t_map map, char c);
 int 			invalid_char(t_map map);
 int				surrounded_by_walls(t_map map);
 int				check_for_empty_line(char *map_str);
-void			player_position(t_map map);
 int				error_message(char *str, t_map map);
 t_game			init_game(t_map map);
 t_image			new_sprite(t_game game, char *path_to_xpm);
-void			render_first_image(t_game game);
-void			render_sprite(t_game game, int y, int x);
+void			render_map(t_game game);
+void			identify_sprite(t_game game, int y, int x);
+void			render_sprite(t_game game, t_image sprite, int line, int column);
+void			player_position(t_map map);
 
 #endif
