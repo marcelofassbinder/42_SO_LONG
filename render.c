@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/22 16:34:35 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:20:25 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void	identify_sprite(t_game game, int y, int x)
 	else if (map_char == COLLECTIBLE)
 		render_sprite(game, game.collectible, y, x);
 	else if (map_char == PLAYER)
-		render_sprite(game, game.player_right, y, x);
+		render_sprite(game, game.player_current, y, x);
 }
+
+/* void	render_player(t_game game, ) */

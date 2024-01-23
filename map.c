@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:08:36 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/22 17:31:40 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:51:24 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,4 @@ void	print_map(t_map map)
 	}
 	ft_printf(1, "lines = %i\n", map.line);
 	ft_printf(1, "columns = %i\n", map.column);
-	ft_printf(1, "player position x=%i y=%i\n", map.player_position->x, map.player_position->y);
 }

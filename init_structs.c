@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/22 17:31:38 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:19:23 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_map	init_map(int fd)
 	map.players = count_appearance(map, PLAYER);
 	map.coins = count_appearance(map, COLLECTIBLE);
 	map.exit = count_appearance(map, EXIT);
-	player_position(map);
 	return(map);
 }
 
@@ -30,17 +29,18 @@ t_game	init_game(t_map map)
 	t_game	game;
 
 	game.map = map;
+	player_position(game.map);
 	game.mlx_ptr = mlx_init();
 	game.mlx_win = mlx_new_window(game.mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
-	game.player_right = new_sprite(game, "textures/player.xpm");
-	game.player_left = new_sprite(game, "textures/player.xpm");
-	game.player_up = new_sprite(game, "textures/player.xpm");
-	game.player_down = new_sprite(game, "textures/player.xpm");
-	game.wall = new_sprite(game, "textures/parede.xpm");
-	game.floor = new_sprite(game, "textures/floor.xpm");
-	game.exit = new_sprite(game, "textures/exit.xpm");
-	game.collectible = new_sprite(game, "textures/cheese.xpm");
-	//define_image_positions(game);
+	game.player_current = new_sprite(game, "textures/bobfundo.xpm");
+	game.player_right = new_sprite(game, "textures/bobfundo.xpm");
+	game.player_left = new_sprite(game, "textures/bob_left.xpm");
+	game.player_up = new_sprite(game, "textures/bob_up.xpm");
+	game.player_down = new_sprite(game, "textures/bob_down.xpm");
+	game.wall = new_sprite(game, "textures/areia2.xpm");
+	game.floor = new_sprite(game, "textures/fundo.xpm");
+	game.exit = new_sprite(game, "textures/pineapplefundo.xpm");
+	game.collectible = new_sprite(game, "textures/krabbyfundo.xpm");
 	return(game);
 }
 
