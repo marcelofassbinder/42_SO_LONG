@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/22 17:31:40 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:19:23 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,20 @@
 #include "ft_printf/ft_printf.h"
 #include "get_next_line/get_next_line.h"
 #include <fcntl.h>
+#include <X11/keysym.h>
+#include <X11/keysymdef.h>
 
+
+// --- MAP DEFINES --- 
 # define EMPTY '0'
 # define WALL '1'
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
 # define SIZE 32
+
+// --- KEY DEFINES ---
+# define UP XK_Up
 
 typedef struct s_position
 {
@@ -58,6 +65,7 @@ typedef struct s_game
 	t_image 	floor;
 	t_image 	collectible;
 	t_image 	exit;
+	t_image 	player_current;
 	t_image 	player_up;
 	t_image 	player_down;
 	t_image		player_right;
@@ -84,5 +92,8 @@ void			render_map(t_game game);
 void			identify_sprite(t_game game, int y, int x);
 void			render_sprite(t_game game, t_image sprite, int line, int column);
 void			player_position(t_map map);
+void			free_map(t_map map);
+void			free_game(t_game game);
+void			change_player_position(int key, t_game game);
 
 #endif

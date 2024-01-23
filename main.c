@@ -6,11 +6,33 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/22 16:35:00 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:20:45 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	handle_input(int key, t_game game)
+{
+	if (key == XK_Escape)
+	{
+		ft_printf(1, "The key %i (ESC) has been pressed.\n", key);
+		free_game(game);
+		exit(1);
+	}
+	change_player_position(key, game);
+	return(ft_printf(1, "The key %i has been pressed.\n", key));
+}
+
+void	change_player_position(int key, t_game game)
+{
+	if (key == UP)
+	{
+		game.map.player_position->y++;
+		game.player_current = game.player_up;
+	}
+	//render_map(game);
+}
 
 int	main(int argc, char **argv)
 {
@@ -24,20 +46,12 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	map = init_map(fd);
 	if(check_map(map) == 1)
+	{	
 		print_map(map);
-	game = init_game(map);
-	render_map(game);
-	mlx_loop(game.mlx_ptr);
-/* 
-	char *path;
-	int x;
-	int y;
-
-	path = "textures/parede.xpm";
-	void	*mlx = mlx_init();
-	void	*mlx_win = mlx_new_window(mlx, 600, 600, "ola");
-	void	*xpm_img = mlx_xpm_file_to_image(mlx, path, &x, &y);
-	mlx_put_image_to_window(mlx, mlx_win, xpm_img, 50, 50);
-	mlx_loop(mlx); */
+		game = init_game(map);
+		render_map(game);
+		mlx_key_hook(game.mlx_win, handle_input, &game);
+		mlx_loop(game.mlx_ptr);
+	}
 
 }	
