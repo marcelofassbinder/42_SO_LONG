@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/23 17:19:23 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:28:35 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 // --- KEY DEFINES ---
 # define UP XK_Up
+# define DOWN XK_Down
+# define LEFT XK_Left
+# define RIGHT XK_Right
 
 typedef struct s_position
 {
@@ -46,7 +49,7 @@ typedef struct s_map
 	int				players;
 	int				coins;
 	int				exit;
-	t_position		*player_position;
+	t_position		player_position;
 }					t_map;
 
 typedef struct s_image
@@ -86,14 +89,15 @@ int 			invalid_char(t_map map);
 int				surrounded_by_walls(t_map map);
 int				check_for_empty_line(char *map_str);
 int				error_message(char *str, t_map map);
-t_game			init_game(t_map map);
-t_image			new_sprite(t_game game, char *path_to_xpm);
-void			render_map(t_game game);
-void			identify_sprite(t_game game, int y, int x);
-void			render_sprite(t_game game, t_image sprite, int line, int column);
-void			player_position(t_map map);
+t_game			*init_game(t_map map);
+t_image			new_sprite(t_game *game, char *path_to_xpm);
+void			render_map(t_game *game);
+void			identify_sprite(t_game *game, int y, int x);
+void			render_sprite(t_game *game, t_image sprite, int line, int column);
+t_position		player_position(t_map map);
 void			free_map(t_map map);
-void			free_game(t_game game);
-void			change_player_position(int key, t_game game);
+void			free_game(t_game *game);
+void			change_player_position(t_game *game, int y, int x);
+int				next_is_not_wall(t_game *game, int y, int x);
 
 #endif

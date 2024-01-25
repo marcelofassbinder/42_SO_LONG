@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/23 18:20:07 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:07:56 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,24 @@ void	free_map(t_map map)
 	}
 	free(map_array);
 }
-void	free_game(t_game game)
+void	free_game(t_game *game)
 {
 	void	*mlx;
 
-	mlx = game.mlx_ptr;
-	mlx_destroy_image(mlx, game.floor.xpm);
-	mlx_destroy_image(mlx, game.collectible.xpm);
-	mlx_destroy_image(mlx, game.exit.xpm);
-	mlx_destroy_image(mlx, game.player_up.xpm);
-	mlx_destroy_image(mlx, game.player_down.xpm);
-	mlx_destroy_image(mlx, game.player_right.xpm);
-	mlx_destroy_image(mlx, game.player_left.xpm);
-	free_map(game.map);
-	mlx_destroy_window(mlx, game.mlx_win);
+	mlx = game->mlx_ptr;
+	mlx_destroy_image(mlx, game->floor.xpm);
+	mlx_destroy_image(mlx, game->collectible.xpm);
+	mlx_destroy_image(mlx, game->exit.xpm);
+	mlx_destroy_image(mlx, game->player_up.xpm);
+	mlx_destroy_image(mlx, game->player_down.xpm);
+	mlx_destroy_image(mlx, game->player_right.xpm);
+	mlx_destroy_image(mlx, game->player_left.xpm);
+	mlx_destroy_image(mlx, game->player_current.xpm);
+	free_map(game->map);
+	mlx_destroy_window(mlx, game->mlx_win);
 	mlx_destroy_display(mlx);
 	free(mlx);
+	free(game);
 }
 int	error_message(char *str, t_map map)
 {
