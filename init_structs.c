@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/23 17:19:23 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:48:22 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,35 @@ t_map	init_map(int fd)
 	return(map);
 }
 
-t_game	init_game(t_map map)
+t_game	*init_game(t_map map)
 {	
-	t_game	game;
+	t_game	*game;
 
-	game.map = map;
-	player_position(game.map);
-	game.mlx_ptr = mlx_init();
-	game.mlx_win = mlx_new_window(game.mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
-	game.player_current = new_sprite(game, "textures/bobfundo.xpm");
-	game.player_right = new_sprite(game, "textures/bobfundo.xpm");
-	game.player_left = new_sprite(game, "textures/bob_left.xpm");
-	game.player_up = new_sprite(game, "textures/bob_up.xpm");
-	game.player_down = new_sprite(game, "textures/bob_down.xpm");
-	game.wall = new_sprite(game, "textures/areia2.xpm");
-	game.floor = new_sprite(game, "textures/fundo.xpm");
-	game.exit = new_sprite(game, "textures/pineapplefundo.xpm");
-	game.collectible = new_sprite(game, "textures/krabbyfundo.xpm");
+	game = malloc(sizeof(t_game));
+	game->map = map;
+	game->map.player_position = player_position(game->map);
+	ft_printf(1, "init y = %i, x = %i\n", game->map.player_position.y, game->map.player_position.x);
+	game->mlx_ptr = mlx_init();
+	game->mlx_win = mlx_new_window(game->mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
+	game->player_current = new_sprite(game, "textures/bobfundo.xpm");
+	game->player_right = new_sprite(game, "textures/bobfundo.xpm");
+	game->player_left = new_sprite(game, "textures/bob_left.xpm");
+	game->player_up = new_sprite(game, "textures/bob_up.xpm");
+	game->player_down = new_sprite(game, "textures/bob_down.xpm");
+	game->wall = new_sprite(game, "textures/areia2.xpm");
+	game->floor = new_sprite(game, "textures/fundo.xpm");
+	game->exit = new_sprite(game, "textures/pineapplefundo.xpm");
+	game->collectible = new_sprite(game, "textures/krabbyfundo.xpm");
+	game->count_moves = 0;
 	return(game);
 }
 
-t_image	new_sprite(t_game game, char *path_to_xpm)
+t_image	new_sprite(t_game *game, char *path_to_xpm)
 {
 	t_image	new_sprite;
 
-	new_sprite.xpm = mlx_xpm_file_to_image(game.mlx_ptr, path_to_xpm, &new_sprite.x, &new_sprite.y);
+	new_sprite.xpm = mlx_xpm_file_to_image(game->mlx_ptr, path_to_xpm, &new_sprite.x, &new_sprite.y);
 	if (!new_sprite.xpm)
-		error_message("Couldn't find a image.\n", game.map);
+		error_message("Couldn't find a image.\n", game->map);
 	return(new_sprite);	
 }

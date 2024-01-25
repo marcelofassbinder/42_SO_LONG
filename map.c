@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:08:36 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/23 16:51:24 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:10:02 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ int	check_for_empty_line(char *map_str)
 	}
 	return (1);
 }
-void	player_position(t_map map)
+t_position	player_position(t_map map)
 {
+	t_position	player_pos;
 	char		**map_array;
 	int			x;
 	int			y;
@@ -72,13 +73,15 @@ void	player_position(t_map map)
 		{
 			if(map_array[y][x] == PLAYER)
 			{
-				map.player_position->x = x;
-				map.player_position->y = y;
+				player_pos.x = x;
+				player_pos.y = y;
 			}
 			x++;
 		}
 		y++;
 	}
+	ft_printf(1, "y = %i, x = %i", player_pos.y, player_pos.x);
+	return(player_pos);
 }
 
 int	count_lines(char **map)
