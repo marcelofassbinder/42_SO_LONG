@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/25 16:55:32 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:11:56 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
+	print_movements(game);
 }
 
 void	render_sprite(t_game *game, t_image sprite, int line, int column)
@@ -52,4 +53,14 @@ void	identify_sprite(t_game *game, int y, int x)
 		render_sprite(game, game->player_current, y, x);
 }
 
-/* void	render_player(t_game game, ) */
+void	print_movements(t_game *game)
+{
+	char *str;
+	char *count;
+
+	count = ft_itoa(game->count_moves);
+	str = ft_strjoin("SPONGEBOB MOVEMENTS: ", count);
+	mlx_string_put(game->mlx_ptr, game->mlx_win, 40, 29, 99999, str);
+	free(count);
+	free(str);
+}

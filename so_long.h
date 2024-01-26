@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/25 18:28:35 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:38:52 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 # define DOWN XK_Down
 # define LEFT XK_Left
 # define RIGHT XK_Right
+# define KEY_W XK_w
+# define KEY_S XK_s
+# define KEY_A XK_a
+# define KEY_D XK_d
+# define ESC XK_Escape
+# define END XK_End
 
 typedef struct s_position
 {
@@ -99,5 +105,7 @@ void			free_map(t_map map);
 void			free_game(t_game *game);
 void			change_player_position(t_game *game, int y, int x);
 int				next_is_not_wall(t_game *game, int y, int x);
+void			close_game(t_game *game, int victory);
+void			print_movements(t_game *game);
 
 #endif
