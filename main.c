@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/25 18:57:38 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:00:14 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,24 @@ void	change_player_position(t_game *game, int new_y, int new_x)
 	{
 		if (game->map.map_array[new_y][new_x] == COLLECTIBLE)
 			game->map.coins--;
-	//	if (game->map.map_array[new_y][new_x] == EXIT && game->map.coins == 0)
-			//victory function;
-		game->map.map_array[last_y][last_x] = EMPTY;
-		game->map.map_array[new_y][new_x] = PLAYER;
+		if (game->map.map_array[new_y][new_x] == EXIT)
+		{
+			/* if (game->map.coins == 0)
+				victory_function(game); */
+			game->map.map_array[new_y][new_x] = EXIT;
+			game->map.map_array[last_y][last_x] = EMPTY;
+
+		}
+		else if (game->map.map_array[last_y][last_x] == EXIT)
+		{
+			game->map.map_array[last_y][last_x] = EXIT;
+			game->map.map_array[new_y][new_x] = PLAYER;
+		}
+		else
+		{
+			game->map.map_array[last_y][last_x] = EMPTY;
+			game->map.map_array[new_y][new_x] = PLAYER;
+		}
 		game->map.player_position.y = new_y;
 		game->map.player_position.x = new_x;
 		game->count_moves++;
