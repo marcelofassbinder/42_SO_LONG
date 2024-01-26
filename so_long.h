@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:38:52 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:57:52 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 	t_image 	floor;
 	t_image 	collectible;
 	t_image 	exit;
+	t_image 	exit_closed;
 	t_image 	player_current;
 	t_image 	player_up;
 	t_image 	player_down;

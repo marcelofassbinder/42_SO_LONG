@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/25 18:48:22 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:57:52 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_game	*init_game(t_map map)
 	game->wall = new_sprite(game, "textures/areia2.xpm");
 	game->floor = new_sprite(game, "textures/fundo.xpm");
 	game->exit = new_sprite(game, "textures/pineapplefundo.xpm");
+	game->exit_closed = new_sprite(game, "textures/bobpineapple.xpm");
 	game->collectible = new_sprite(game, "textures/krabbyfundo.xpm");
 	game->count_moves = 0;
 	return(game);
