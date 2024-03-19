@@ -8,9 +8,11 @@ NAME = so_long
 PRINTFA = ./ft_printf/libftprintf.a
 PRINTFD = ./ft_printf
 
+
+
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PRINTFA) 
+$(NAME): $(OBJS) $(PRINTFA) $(MLXA)
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTFA) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(PRINTFA): $(PRINTFD)

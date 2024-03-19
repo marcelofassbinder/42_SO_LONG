@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:11:56 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:02:46 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ void	identify_sprite(t_game *game, int y, int x)
 	else if (map_char == EMPTY)
 		render_sprite(game, game->floor, y, x);
 	else if (map_char == EXIT)
-		render_sprite(game, game->exit, y, x);
+	{
+		if (game->map.coins > 0 && game->map.map_array[game->map.player_position.y][game->map.player_position.x] == EXIT)
+			render_sprite(game, game->exit_closed, y, x);
+		else
+			render_sprite(game, game->exit, y, x);
+	}
 	else if (map_char == COLLECTIBLE)
 		render_sprite(game, game->collectible, y, x);
 	else if (map_char == PLAYER)
@@ -60,6 +65,7 @@ void	print_movements(t_game *game)
 
 	count = ft_itoa(game->count_moves);
 	str = ft_strjoin("SPONGEBOB MOVEMENTS: ", count);
+	ft_printf(1, "%s\n", str);
 	mlx_string_put(game->mlx_ptr, game->mlx_win, 40, 29, 99999, str);
 	free(count);
 	free(str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:57:52 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:14:56 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ t_map	init_map(int fd)
 	t_map	map;
 	map.map_array = read_map(fd);
 	map.line = count_lines(map.map_array);
+	/* if (!map.map_array[0])
+		error_message("Map is empty.", map);
+	else */
 	map.column = ft_strlen(map.map_array[0]);
 	map.players = count_appearance(map, PLAYER);
 	map.coins = count_appearance(map, COLLECTIBLE);
@@ -31,14 +34,13 @@ t_game	*init_game(t_map map)
 	game = malloc(sizeof(t_game));
 	game->map = map;
 	game->map.player_position = player_position(game->map);
-	ft_printf(1, "init y = %i, x = %i\n", game->map.player_position.y, game->map.player_position.x);
 	game->mlx_ptr = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
-	game->player_current = new_sprite(game, "textures/bobfundo.xpm");
 	game->player_right = new_sprite(game, "textures/bobfundo.xpm");
 	game->player_left = new_sprite(game, "textures/bob_left.xpm");
 	game->player_up = new_sprite(game, "textures/bob_up.xpm");
 	game->player_down = new_sprite(game, "textures/bob_down.xpm");
+	game->player_current = game->player_right;
 	game->wall = new_sprite(game, "textures/areia2.xpm");
 	game->floor = new_sprite(game, "textures/fundo.xpm");
 	game->exit = new_sprite(game, "textures/pineapplefundo.xpm");

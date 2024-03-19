@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:45:48 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:44:23 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	change_player_position(t_game *game, int new_y, int new_x)
 		{
 			game->map.map_array[last_y][last_x] = EXIT;
 			game->map.map_array[new_y][new_x] = PLAYER;
+			game->exit = game->exit;
 		}
 		else
 		{
@@ -80,7 +81,6 @@ int	close_window(t_game *game)
 	close_game(game, 0);
 	return(0);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -101,5 +101,4 @@ int	main(int argc, char **argv)
 		mlx_hook(game->mlx_win, 17, (1L << 2), close_window, game);
 		mlx_loop(game->mlx_ptr);
 	}
-
 }	
