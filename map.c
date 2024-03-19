@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:08:36 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/25 17:10:02 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:33:13 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_for_empty_line(char *map_str)
 {
 	int		i;
 
-	if (map_str[0] == '\n' || map_str[ft_strlen(map_str) - 1] == '\n')
+	if (map_str[0] == '\n' ||  map_str[0] == '\0' || map_str[ft_strlen(map_str) - 1] == '\n')
 	{
 		free(map_str);
 		return (ft_printf(2, "Error!\nMap contains empty line.\n"));
@@ -80,7 +80,6 @@ t_position	player_position(t_map map)
 		}
 		y++;
 	}
-	ft_printf(1, "y = %i, x = %i", player_pos.y, player_pos.x);
 	return(player_pos);
 }
 
@@ -104,6 +103,4 @@ void	print_map(t_map map)
 		ft_printf(1, "%s\n", map.map_array[i]);
 		i++;
 	}
-	ft_printf(1, "lines = %i\n", map.line);
-	ft_printf(1, "columns = %i\n", map.column);
 }

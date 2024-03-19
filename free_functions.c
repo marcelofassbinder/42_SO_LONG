@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:18:05 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:11:29 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	free_game(t_game *game)
 
 	mlx = game->mlx_ptr;
 	mlx_destroy_image(mlx, game->floor.xpm);
+	mlx_destroy_image(mlx, game->wall.xpm);
 	mlx_destroy_image(mlx, game->collectible.xpm);
 	mlx_destroy_image(mlx, game->exit.xpm);
+	mlx_destroy_image(mlx, game->exit_closed.xpm);
 	mlx_destroy_image(mlx, game->player_up.xpm);
 	mlx_destroy_image(mlx, game->player_down.xpm);
 	mlx_destroy_image(mlx, game->player_right.xpm);
