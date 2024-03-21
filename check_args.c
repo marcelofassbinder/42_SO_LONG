@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_input.c                                      :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:55:30 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/21 16:33:37 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:35:15 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_input(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
 	int	fd;
-	
 	fd = open(argv[1], O_RDONLY);
 	if (argc != 2)
 		return(ft_printf(2, "Error!\nInvalid number of arguments.\n"));

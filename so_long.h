@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:57:52 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:26:39 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map
 	int				players;
 	int				coins;
 	int				exit;
-	t_position		player_position;
+	t_position		player;
 }					t_map;
 
 typedef struct s_image
@@ -67,9 +67,9 @@ typedef struct s_image
 
 typedef struct s_game
 {
-	t_map		map;
 	void		*mlx_ptr;
 	void		*mlx_win;
+	t_map		map;
 	t_image 	wall;
 	t_image 	floor;
 	t_image 	collectible;
@@ -83,7 +83,7 @@ typedef struct s_game
 	int 		count_moves;
 }				t_game;
 
-int				check_input(int argc, char **argv);
+int				check_args(int argc, char **argv);
 int				check_extension(char *str);
 char			**read_map(int fd);
 void			print_map(t_map map);
@@ -102,11 +102,13 @@ void			render_map(t_game *game);
 void			identify_sprite(t_game *game, int y, int x);
 void			render_sprite(t_game *game, t_image sprite, int line, int column);
 t_position		player_position(t_map map);
-void			free_map(t_map map);
+void			free_map(char **map);
 void			free_game(t_game *game);
-void			change_player_position(t_game *game, int y, int x);
+void			change_player_pos(t_game *game, int y, int x);
 int				next_is_not_wall(t_game *game, int y, int x);
 void			close_game(t_game *game, int victory);
 void			print_movements(t_game *game);
+int				has_valid_path(t_map map);
+int 			valid_path_coins(t_map map, int y, int x, char **copy);
 
 #endif

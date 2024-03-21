@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/19 16:14:56 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:20:12 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_game	*init_game(t_map map)
 
 	game = malloc(sizeof(t_game));
 	game->map = map;
-	game->map.player_position = player_position(game->map);
+	game->map.player = player_position(game->map);
 	game->mlx_ptr = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx_ptr, (map.column * SIZE), (map.line * SIZE), "so_long");
 	game->player_right = new_sprite(game, "textures/bobfundo.xpm");

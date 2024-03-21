@@ -6,7 +6,7 @@
 /*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/19 17:02:46 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:20:12 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	identify_sprite(t_game *game, int y, int x)
 		render_sprite(game, game->floor, y, x);
 	else if (map_char == EXIT)
 	{
-		if (game->map.coins > 0 && game->map.map_array[game->map.player_position.y][game->map.player_position.x] == EXIT)
+		if (game->map.coins > 0 && game->map.map_array[game->map.player.y][game->map.player.x] == EXIT)
 			render_sprite(game, game->exit_closed, y, x);
 		else
 			render_sprite(game, game->exit, y, x);
