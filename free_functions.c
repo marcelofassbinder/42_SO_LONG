@@ -6,25 +6,23 @@
 /*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/19 16:11:29 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:30:10 by mfassbin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(t_map map)
+void	free_map(char **map)
 {
-	char **map_array;
 	int i;
 
-	map_array = map.map_array;
 	i = 0;
-	while(map_array[i])
+	while(map[i])
 	{
-		free(map_array[i]);
+		free(map[i]);
 		i++;
 	}
-	free(map_array);
+	free(map);
 }
 void	free_game(t_game *game)
 {
@@ -40,7 +38,7 @@ void	free_game(t_game *game)
 	mlx_destroy_image(mlx, game->player_down.xpm);
 	mlx_destroy_image(mlx, game->player_right.xpm);
 	mlx_destroy_image(mlx, game->player_left.xpm);
-	free_map(game->map);
+	free_map(game->map.map_array);
 	mlx_destroy_window(mlx, game->mlx_win);
 	mlx_destroy_display(mlx);
 	free(mlx);
@@ -48,6 +46,6 @@ void	free_game(t_game *game)
 }
 int	error_message(char *str, t_map map)
 {
-	free_map(map);
+	free_map(map.map_array);
 	return(ft_printf(2, "Error!\n%s", str));
 }
