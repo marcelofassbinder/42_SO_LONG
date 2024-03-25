@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:31:07 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/21 18:45:34 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/25 23:04:29 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	has_valid_path(t_map map)
 		i++;
 	}
 	player = player_position(map);
-	if (valid_path_coins(map, player.y, player.x, dup) == 1)
+	if (valid_path(map, player.y, player.x, dup) == 1)
 	{
 		free_map(dup);
 		return (1);
@@ -37,7 +37,7 @@ int	has_valid_path(t_map map)
 	return (0);
 }
 
-int valid_path_coins(t_map map, int y, int x, char **copy)
+int valid_path(t_map map, int y, int x, char **copy)
 {
 	static int counter = 0;
 	static int found_exit = 0;
@@ -53,10 +53,10 @@ int valid_path_coins(t_map map, int y, int x, char **copy)
 	if (copy[y][x] == COLLECTIBLE)
 		counter++;
 	copy[y][x] = WALL;
-	if (valid_path_coins(map, y + 1, x, copy)
-		|| valid_path_coins(map, y - 1, x, copy)
-		|| valid_path_coins(map, y, x + 1, copy)
-		|| valid_path_coins(map, y, x - 1, copy))
+	if (valid_path(map, y + 1, x, copy)
+		|| valid_path(map, y - 1, x, copy)
+		|| valid_path(map, y, x + 1, copy)
+		|| valid_path(map, y, x - 1, copy))
 		return (1);
 	return (0);
 }
