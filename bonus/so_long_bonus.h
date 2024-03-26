@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 16:58:31 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/25 23:04:29 by marcelo          ###   ########.fr       */
+/*   Created: 2024/03/26 11:55:02 by marcelo           #+#    #+#             */
+/*   Updated: 2024/03/26 17:26:15 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-#include "mlx_linux/mlx.h"
-#include "ft_printf/ft_printf.h"
-#include "get_next_line/get_next_line.h"
+#include "../mlx_linux/mlx.h"
+#include "../ft_printf/ft_printf.h"
+#include "../get_next_line/get_next_line.h"
 #include <fcntl.h>
 #include <X11/keysym.h>
 #include <X11/keysymdef.h>
@@ -27,6 +27,7 @@
 # define PLAYER 'P'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
+# define JELLYFISH 'J'
 # define SIZE 32
 
 // --- KEY DEFINES ---
@@ -55,6 +56,7 @@ typedef struct s_map
 	int				players;
 	int				coins;
 	int				exit;
+	int				jellyfish;
 	t_position		player;
 }					t_map;
 
@@ -75,6 +77,7 @@ typedef struct s_game
 	t_image 	collectible;
 	t_image 	exit;
 	t_image 	exit_closed;
+	t_image		jellyfish;
 	t_image 	player_current;
 	t_image 	player_up;
 	t_image 	player_down;
@@ -108,7 +111,12 @@ t_position		player_position(t_map map);
 void			free_map(char **map);
 void			free_game(t_game *game);
 void			change_player_pos(t_game *game, int y, int x);
-void			close_game(t_game *game, int victory);
+void			close_game(t_game *game, int flag);
 void			print_movements(t_game *game);
+int				handle_input(int key, t_game *game);
+int				close_window(t_game *game);
+void			move_jelly(t_game *game);
+void			change_jelly_pos(t_game *game, int y, int x, int dir);
 
 #endif
+
