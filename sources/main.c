@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/21 19:26:59 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:14:53 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	change_player_pos(t_game *game, int new_y, int new_x)
 int	close_window(t_game *game)
 {
 	close_game(game, 0);
-	return(0);
+	return(EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if(check_args(argc, argv) != 1)
-		exit(2);
+		return(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	map = init_map(fd);
 	if(check_map(map) == 1)

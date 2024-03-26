@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_functions.c                                   :+:      :+:    :+:   */
+/*   free_functions_b.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/21 18:30:10 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:33:26 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_map(char **map)
 {
@@ -38,6 +38,7 @@ void	free_game(t_game *game)
 	mlx_destroy_image(mlx, game->player_down.xpm);
 	mlx_destroy_image(mlx, game->player_right.xpm);
 	mlx_destroy_image(mlx, game->player_left.xpm);
+	mlx_destroy_image(mlx, game->jellyfish.xpm);
 	free_map(game->map.map_array);
 	mlx_destroy_window(mlx, game->mlx_win);
 	mlx_destroy_display(mlx);
@@ -48,4 +49,21 @@ int	error_message(char *str, t_map map)
 {
 	free_map(map.map_array);
 	return(ft_printf(2, "Error!\n%s", str));
+}
+void	close_game(t_game *game, int flag)
+{
+	if (flag == 1)
+		ft_printf(1, "\033[42;37;5;1mCONGRATULATIONS! YOU WON! :D\033[0m\n");
+	else if (flag == 0)
+	{
+		ft_printf(1, "The key %i has been pressed.\n", ESC);
+		ft_printf(1, "\033[43;37;1mYou closed the game.\033[0m\n");
+	}
+	else if (flag == 2)
+	{
+		ft_printf(1, "The key %i has been pressed.\n", ESC);
+		ft_printf(1, "\033[41;37;1mYou hit the jellyfish and died.\033[0m\n");
+	}
+	free_game(game);
+	exit(EXIT_SUCCESS);
 }

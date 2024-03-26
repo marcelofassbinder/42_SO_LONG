@@ -1,5 +1,6 @@
-CFILES = ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c main.c check_args.c map.c \
-init_structs.c check_map.c free_functions.c render.c close_game.c valid_path.c
+MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+CFILES = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c sources/main.c sources/check_args.c sources/map.c \
+sources/init_structs.c sources/check_map.c sources/free_functions.c sources/render.c sources/valid_path.c
 OBJS = ${CFILES:.c=.o}
 RM = rm -rf
 CC = gcc
@@ -7,23 +8,28 @@ CFLAGS = -g -Wall -Wextra -Werror
 NAME = so_long
 PRINTFA = ./ft_printf/libftprintf.a
 PRINTFD = ./ft_printf
-
-
+BONUSFILES = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c bonus/check_args_b.c bonus/check_map_b.c bonus/free_functions_b.c bonus/init_structs_b.c \
+bonus/main_b.c bonus/map_b.c bonus/render_b.c bonus/valid_path_b.c bonus/move_jelly.c
+OBJSBONUS = ${BONUSFILES:.c=.o}
+BONUS = so_long_bonus
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PRINTFA) $(MLXA)
-	$(CC) $(CFLAGS) $(OBJS) $(PRINTFA) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME): $(OBJS) $(PRINTFA)
+	$(CC) $(CFLAGS) $(OBJS) $(PRINTFA) $(MLXFLAGS) -o $(NAME)
 
 $(PRINTFA): $(PRINTFD)
 	make -C $(PRINTFD)
 
+bonus: $(OBJSBONUS) $(PRINTFA)
+	$(CC) $(CFLAGS) $(OBJSBONUS) $(PRINTFA) $(MLXFLAGS) -o $(BONUS)
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJSBONUS)
 	make clean -C $(PRINTFD)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 	make fclean -C $(PRINTFD)
 
 re: fclean all
