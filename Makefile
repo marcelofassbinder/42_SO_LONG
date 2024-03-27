@@ -11,25 +11,27 @@ PRINTFD = ./ft_printf
 BONUSFILES = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c bonus/check_args_b.c bonus/check_map_b.c bonus/free_functions_b.c bonus/init_structs_b.c \
 bonus/main_b.c bonus/map_b.c bonus/render_b.c bonus/valid_path_b.c bonus/move_jelly.c
 OBJSBONUS = ${BONUSFILES:.c=.o}
-BONUS = so_long_bonus
+NAMEBONUS = so_long_bonus
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PRINTFA)
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTFA) $(MLXFLAGS) -o $(NAME)
 
+bonus: $(NAMEBONUS)
+
+$(NAMEBONUS): $(PRINTFA) $(OBJSBONUS) 
+	$(CC) $(CFLAGS) $(OBJSBONUS) $(PRINTFA) $(MLXFLAGS) -o $(NAMEBONUS)
+
 $(PRINTFA): $(PRINTFD)
 	make -C $(PRINTFD)
-
-bonus: $(OBJSBONUS) $(PRINTFA)
-	$(CC) $(CFLAGS) $(OBJSBONUS) $(PRINTFA) $(MLXFLAGS) -o $(BONUS)
 
 clean:
 	$(RM) $(OBJS) $(OBJSBONUS)
 	make clean -C $(PRINTFD)
 
 fclean: clean
-	$(RM) $(NAME) $(BONUS)
+	$(RM) $(NAME) $(NAMEBONUS)
 	make fclean -C $(PRINTFD)
 
 re: fclean all

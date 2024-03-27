@@ -6,11 +6,11 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:31:07 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/25 23:04:29 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:07:16 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	has_valid_path(t_map map)
 {
@@ -22,7 +22,7 @@ int	has_valid_path(t_map map)
 	if (!dup)
 		free_map(dup);
 	i = 0;
-	while(map.map_array[i])
+	while (map.map_array[i])
 	{
 		dup[i] = ft_strdup(map.map_array[i]);
 		i++;
@@ -37,17 +37,17 @@ int	has_valid_path(t_map map)
 	return (0);
 }
 
-int valid_path(t_map map, int y, int x, char **copy)
+int	valid_path(t_map map, int y, int x, char **copy)
 {
-	static int counter = 0;
-	static int found_exit = 0;
-	
+	static int	counter = 0;
+	static int	found_exit = 0;
+
 	if (y < 0 || x < 0 || y >= map.line || x >= map.column)
 		return (0);
 	if (copy[y][x] == EXIT)
 		found_exit = 1;
 	if (counter == map.coins && found_exit == 1)
-		return(1);
+		return (1);
 	if (copy[y][x] == WALL)
 		return (0);
 	if (copy[y][x] == COLLECTIBLE)

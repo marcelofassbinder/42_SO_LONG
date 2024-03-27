@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/21 19:20:12 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:06:32 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void	render_map(t_game *game)
 {
@@ -18,10 +18,10 @@ void	render_map(t_game *game)
 	int	y;
 
 	y = 0;
-	while(y < game->map.line)
+	while (y < game->map.line)
 	{
 		x = 0;
-		while(x < game->map.column)
+		while (x < game->map.column)
 		{
 			identify_sprite(game, y, x);
 			x++;
@@ -33,7 +33,8 @@ void	render_map(t_game *game)
 
 void	render_sprite(t_game *game, t_image sprite, int line, int column)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, sprite.xpm, column * SIZE, line * SIZE);
+	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, \
+	sprite.xpm, column * SIZE, line * SIZE);
 }
 
 void	identify_sprite(t_game *game, int y, int x)
@@ -47,7 +48,9 @@ void	identify_sprite(t_game *game, int y, int x)
 		render_sprite(game, game->floor, y, x);
 	else if (map_char == EXIT)
 	{
-		if (game->map.coins > 0 && game->map.map_array[game->map.player.y][game->map.player.x] == EXIT)
+		if (game->map.coins > 0
+			&& game->map.map_array[game->map.player.y][game->map.player.x]
+				== EXIT)
 			render_sprite(game, game->exit_closed, y, x);
 		else
 			render_sprite(game, game->exit, y, x);
@@ -60,8 +63,8 @@ void	identify_sprite(t_game *game, int y, int x)
 
 void	print_movements(t_game *game)
 {
-	char *str;
-	char *count;
+	char	*str;
+	char	*count;
 
 	count = ft_itoa(game->count_moves);
 	str = ft_strjoin("SPONGEBOB MOVEMENTS: ", count);

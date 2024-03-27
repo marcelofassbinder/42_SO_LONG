@@ -6,11 +6,11 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:08:16 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/26 12:14:53 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:02:45 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	handle_input(int key, t_game *game)
 {
@@ -26,7 +26,7 @@ int	handle_input(int key, t_game *game)
 		game->player_current = game->player_down;
 		change_player_pos(game, game->map.player.y + 1, game->map.player.x);
 	}
-	else if(key == LEFT || key == KEY_A)
+	else if (key == LEFT || key == KEY_A)
 	{
 		game->player_current = game->player_left;
 		change_player_pos(game, game->map.player.y, game->map.player.x - 1);
@@ -36,7 +36,7 @@ int	handle_input(int key, t_game *game)
 		game->player_current = game->player_right;
 		change_player_pos(game, game->map.player.y, game->map.player.x + 1);
 	}
-	return(ft_printf(1, "The key %i has been pressed.\n", key));
+	return (ft_printf(1, "The key %i has been pressed.\n", key));
 }
 
 void	change_player_pos(t_game *game, int new_y, int new_x)
@@ -52,7 +52,7 @@ void	change_player_pos(t_game *game, int new_y, int new_x)
 				close_game(game, 1);
 		}
 		else if (game->map.map_array[game->map.player.y][game->map.player.x]
-			 == EXIT)
+			== EXIT)
 			game->map.map_array[new_y][new_x] = PLAYER;
 		else
 		{
@@ -69,7 +69,7 @@ void	change_player_pos(t_game *game, int new_y, int new_x)
 int	close_window(t_game *game)
 {
 	close_game(game, 0);
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -78,11 +78,11 @@ int	main(int argc, char **argv)
 	t_game	*game;
 	int		fd;
 
-	if(check_args(argc, argv) != 1)
-		return(EXIT_FAILURE);
+	if (check_args(argc, argv) != 1)
+		return (EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	map = init_map(fd);
-	if(check_map(map) == 1)
+	if (check_map(map) == 1)
 	{
 		game = init_game(map);
 		render_map(game);
@@ -90,4 +90,4 @@ int	main(int argc, char **argv)
 		mlx_hook(game->mlx_win, 17, (1L << 2), close_window, game);
 		mlx_loop(game->mlx_ptr);
 	}
-}	
+}

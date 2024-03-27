@@ -6,24 +6,25 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/26 15:33:26 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:14:56 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		free(map[i]);
 		i++;
 	}
 	free(map);
 }
+
 void	free_game(t_game *game)
 {
 	void	*mlx;
@@ -45,11 +46,13 @@ void	free_game(t_game *game)
 	free(mlx);
 	free(game);
 }
+
 int	error_message(char *str, t_map map)
 {
 	free_map(map.map_array);
-	return(ft_printf(2, "Error!\n%s", str));
+	return (ft_printf(2, "Error!\n%s", str));
 }
+
 void	close_game(t_game *game, int flag)
 {
 	if (flag == 1)
