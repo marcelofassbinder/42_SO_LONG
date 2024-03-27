@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfassbin <mfassbin@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:58:39 by mfassbin          #+#    #+#             */
-/*   Updated: 2023/11/10 14:32:55 by mfassbin         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:32:51 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ char	*new_dest(char *dest)
 		free(dest);
 		return (NULL);
 	}
-	ft_strlcpy(new_dest, &dest[i], len - i + 1); 
+	ft_strlcpy(new_dest, &dest[i], len - i + 1);
 	free(dest);
 	return (new_dest);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*dest[1024]; 
+	static char		*dest[1024];
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
