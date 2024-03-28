@@ -6,12 +6,14 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 12:55:30 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/27 13:58:31 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:30:10 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/* Checks if the input is correct, it means 
+argc must be 2 and extension must be ".ber" */
 int	check_args(int argc, char **argv)
 {
 	int	fd;
@@ -24,6 +26,7 @@ int	check_args(int argc, char **argv)
 	return (1);
 }
 
+/* Checks if the extension is exactly ".ber" */
 int	check_extension(char *str)
 {
 	int	len;

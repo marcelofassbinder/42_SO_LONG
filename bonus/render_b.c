@@ -6,12 +6,13 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:35:08 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/27 14:23:15 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:21:36 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
+/*Iterates the map array and calls "identify_sprite" to render the images*/
 void	render_map(t_game *game)
 {
 	int	x;
@@ -31,12 +32,14 @@ void	render_map(t_game *game)
 	print_movements(game);
 }
 
+/*Puts the image to the window, by calling the mlx function*/
 void	render_sprite(t_game *game, t_image sprite, int line, int column)
 {
 	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, \
 	sprite.xpm, column * SIZE, line * SIZE);
 }
 
+/*Identifies the character and renders the compatible image on the screen*/
 void	identify_sprite(t_game *game, int y, int x)
 {
 	char	map_char;
@@ -63,6 +66,7 @@ void	identify_sprite(t_game *game, int y, int x)
 		render_sprite(game, game->jellyfish, y, x);
 }
 
+/*Prints on the screen the quantity of movements the player already made*/
 void	print_movements(t_game *game)
 {
 	char	*str;

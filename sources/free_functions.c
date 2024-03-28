@@ -6,12 +6,14 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:56:00 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/27 13:59:30 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:30:10 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/*Free the memory allocated in map array, line by line, 
+and free the double pointer in the end*/
 void	free_map(char **map)
 {
 	int	i;
@@ -25,6 +27,7 @@ void	free_map(char **map)
 	free(map);
 }
 
+/*Free all the memory allocated in the game struct*/
 void	free_game(t_game *game)
 {
 	void	*mlx;
@@ -46,12 +49,15 @@ void	free_game(t_game *game)
 	free(game);
 }
 
+/*Free the map and return the error message + issue*/
 int	error_message(char *str, t_map map)
 {
 	free_map(map.map_array);
 	return (ft_printf(2, "Error!\n%s", str));
 }
 
+/*Ends the game, showing different messages for each 
+flag (0 closes the window and end the game and 1 is victory)*/
 void	close_game(t_game *game, int victory)
 {
 	if (victory == 1)
