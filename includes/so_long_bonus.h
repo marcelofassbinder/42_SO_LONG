@@ -6,7 +6,7 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:55:02 by marcelo           #+#    #+#             */
-/*   Updated: 2024/03/28 15:32:19 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:57:16 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,45 +90,45 @@ typedef struct s_game
 	int			count_moves;
 }				t_game;
 
-// * * * CHECK_ARGS_B.C * * *
+// * * * CHECK_ARGS_BONUS.C * * *
 int				check_args(int argc, char **argv);
 int				check_extension(char *str);
 
-// * * * CHECK_MAP_B.C * * *
+// * * * CHECK_MAP_BONUS.C * * *
 int				check_map(t_map map);
 int				invalid_char(t_map map);
 int				count_appearance(t_map map, char c);
 int				surrounded_by_walls(t_map map);
 
-// * * * FREE_FUNCTIONS_B.C * * *
+// * * * FREE_FUNCTIONS_BONUS.C * * *
 void			free_map(char **map);
 void			free_game(t_game *game);
 void			close_game(t_game *game, int flag);
 int				error_message(char *str, t_map map);
 
-// * * * INIT_STRUCTS_B.C * * *
+// * * * INIT_STRUCTS_BONUS.C * * *
 t_map			init_map(int fd);
 t_game			*init_game(t_map map);
 t_image			new_sprite(t_game *game, char *path_to_xpm);
 t_position		player_position(t_map map);
 
-// * * * MAIN_B.C * * *
+// * * * MAIN_BONUS.C * * *
 void			change_player_pos(t_game *game, int y, int x);
 int				handle_input(int key, t_game *game);
 int				close_window(t_game *game);
 
-// * * * MAP_B.C * * *
+// * * * MAP_BONUS.C * * *
 char			**read_map(int fd);
 int				count_lines(char **map);
 int				check_for_empty_line(char *map_str);
 int				has_valid_path(t_map map);
 int				valid_path(t_map map, int y, int x, char **copy);
 
-// * * * MOVE_JELLY_B.C * * *
+// * * * MOVE_JELLY.C * * *
 void			move_jelly(t_game *game);
 void			change_jelly_pos(t_game *game, int y, int x, int dir);
 
-// * * * RENDER_B.C * * *
+// * * * RENDER_BONUS.C * * *
 void			render_map(t_game *game);
 void			identify_sprite(t_game *game, int y, int x);
 void			render_sprite(t_game *game, \
