@@ -6,12 +6,18 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 14:21:10 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/27 14:13:42 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 16:49:48 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
+/*Checks if map contain more than 3 lines/columns, exactly 1 player, 1 exit and 
+at least 1 collectible; if there is a invalid char in the array;if the map is 
+totally surrounded by walls; if there is a valid path; and if the map is 
+rectangular*/
+/*Returns 1 if the map is valid, or returns a specific error message describing 
+the issue encountered.*/
 int	check_map(t_map map)
 {
 	int	i;
@@ -38,6 +44,8 @@ int	check_map(t_map map)
 	return (1);
 }
 
+/*Counts how many times a specific character appears in the map array*/
+/*Returns how many times char 'c' appears in the map array*/
 int	count_appearance(t_map map, char c)
 {
 	char	**map_array;
@@ -62,6 +70,10 @@ int	count_appearance(t_map map, char c)
 	return (counter);
 }
 
+/*Checks if the map array contains any invalid characters. 
+Valid characters are 'P', 'C', 'E', 'J', '0', and '1'.*/
+/*Returns 0 if the map array contains an invalid character, 
+or 1 to indicate success.*/
 int	invalid_char(t_map map)
 {
 	char	**map_array;
@@ -86,6 +98,9 @@ int	invalid_char(t_map map)
 	return (1);
 }
 
+/*Checks if the map is all surrounded by walls.*/
+/*Returns 0 if map contains anything different from wall, 
+or 1, indicating success*/
 int	surrounded_by_walls(t_map map)
 {
 	char	**map_array;

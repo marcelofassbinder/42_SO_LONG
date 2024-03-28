@@ -6,12 +6,14 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:49:38 by marcelo           #+#    #+#             */
-/*   Updated: 2024/03/27 14:17:56 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:25:24 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
+/*Perform an action, based on the key that is pressed, and renders the map*/
+/*Returns the message indicating which key was pressed*/
 int	handle_input(int key, t_game *game)
 {
 	if (key == ESC)
@@ -41,6 +43,17 @@ int	handle_input(int key, t_game *game)
 	return (ft_printf(1, "The key %i has been pressed.\n", key));
 }
 
+/*Changes the player position and increases the moves counter,
+ based on its new coordinates(x, y). 
+If the next position is a wall, does nothing.
+If the next position is a jellyfish, ends the game, indicating lost.
+If the next position is a collectible, decrease the quantity of coins. 
+in the map struct.
+If the next position is the exit, and there are no coins, ends the game, 
+indicating victory.
+If the actual position is the exit, it means that there uncollected coins, 
+and the game is not over, so the next position must be the player
+If the actual position is empty, the next must be the player.*/
 void	change_player_pos(t_game *game, int new_y, int new_x)
 {
 	if (game->map.map_array[new_y][new_x] != WALL)
@@ -69,12 +82,26 @@ void	change_player_pos(t_game *game, int new_y, int new_x)
 	}
 }
 
+/*Calls the function "close_game" with the flag '0', indicating the user 
+pressed a key that close the window.*/
+/*Returns the macro "EXIT_SUCCESS", the same as 0, 
+indicating that no error has occured.*/
 int	close_window(t_game *game)
 {
 	close_game(game, 0);
 	return (EXIT_SUCCESS);
 }
 
+/*Executes the program.
+1) Check the arguments
+2) Open the .ber file
+3) Initialize the map structure
+4) Check if map is valid
+5) Initialize the game structure
+6) Render all the images together
+7) Receives the input and perform an action, based on the pressed key
+8) Closes the window if the 'X' is clicked
+9) mlx_loop keeps the window active. */
 int	main(int argc, char **argv)
 {
 	t_map	map;

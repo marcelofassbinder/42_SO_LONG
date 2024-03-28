@@ -6,12 +6,14 @@
 /*   By: marcelo <marcelo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:42 by mfassbin          #+#    #+#             */
-/*   Updated: 2024/03/27 14:01:33 by marcelo          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:31:57 by marcelo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/*Initializes all the elements of map struct*/
+/*Returns the map struct*/
 t_map	init_map(int fd)
 {
 	t_map	map;
@@ -25,6 +27,8 @@ t_map	init_map(int fd)
 	return (map);
 }
 
+/*Initializes all the elements of game struct*/
+/*Returns a pointer to the game struct*/
 t_game	*init_game(t_map map)
 {
 	t_game	*game;
@@ -49,6 +53,36 @@ t_game	*init_game(t_map map)
 	return (game);
 }
 
+/*Finds where the player is in the map array*/
+/*Returns the position struct*/
+t_position	player_position(t_map map)
+{
+	t_position	player_pos;
+	char		**map_array;
+	int			x;
+	int			y;
+
+	map_array = map.map_array;
+	y = 0;
+	while (y < map.line)
+	{
+		x = 0;
+		while (x < map.column)
+		{
+			if (map_array[y][x] == PLAYER)
+			{
+				player_pos.x = x;
+				player_pos.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+	return (player_pos);
+}
+
+/*Create a new image, based on the path to xpm file*/
+/*Returns the image struct*/
 t_image	new_sprite(t_game *game, char *path_to_xpm)
 {
 	t_image	new_sprite;
