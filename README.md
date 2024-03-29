@@ -1,19 +1,32 @@
 <h1 align=center>
  42_SO_LONG 🕹️
 </h1>
+
 <div align=center>
  A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
 </div>
+
 <h2 align=center>
-MANDATORY:
+MANDATORY
 </h2>
 
-![so_long_demonstration](textures/so_long.gif "so_long demonstration")
+<div align=center>
+ 
+![so_long_demonstration](textures/so_long_m.gif "so_long demonstration")
 
-## BONUS:
+</div>
 
+<h2 align=center>
+BONUS
+</h2>
+
+<div align=center>
+ 
 ![so_long_bonus](textures/so_long.gif "so_long bonus")
-# About ✍
+
+</div>
+
+ # About ✍
 So_long consists in creating a 2 dimensional game, where the player must collect every collectible present on the map and reach the exit. To achieve that, the player is able to move in 4 directions, up, down, right and left, by pressing W, S, D and A, respectively. To develop this project, I utilized the Minilibx, which is the official graphics library of 42 School. The Minilibx provides essential tools for opening windows, creating images, and handling keyboard and mouse events. n this project, I had the freedom to choose the resources I wanted. Inspired by my favorite cartoon, SpongeBob SquarePants, I decided to incorporate elements from the show into the game. SpongeBob himself became the player character, Krabby Patty served as the collectible, his pineapple house became the exit, jellyfish were introduced as enemies, sand acted as walls, and the sea bottom formed the backdrop for the game.
 # Challenges and Learning Objectives 🧠
 - Graphics Programming: This project provides an opportunity to learn about graphics programming, particularly in a 2D game environment. Understanding how to render images, create visual effects, and manage game elements on the screen are essential skills that can be developed through so_long.
