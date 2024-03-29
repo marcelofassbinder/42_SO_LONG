@@ -1,26 +1,36 @@
 # 42_SO_LONG 🕹️
-A 2D game developed in C and Minilibx (a minimal X-Window library) to handle graphics and inputs.
+A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
 # About ✍
 So_long consists in creating a 2 dimensional game, where the player must collect every collectible present on the map and reach the exit. To achieve that, the player is able to move in 4 directions, up, down, right and left, by pressing W, S, D and A, respectively. To develop this project, I utilized the Minilibx, which is the official graphics library of 42 School. The Minilibx provides essential tools for opening windows, creating images, and handling keyboard and mouse events.
+# Challenges and Learning Objectives 🧠
+- Graphics Programming: This project provides an opportunity to learn about graphics programming, particularly in a 2D game environment. Understanding how to render images, create visual effects, and manage game elements on the screen are essential skills that can be developed through so_long.
+- Event Handling: Capturing keyboard and mouse events, to control the player and close the game; implementing player movement logic based on these events; detecting colisions between the player and map elements. 
+- Resource Management: Managing game resources such as textures and maps is a key aspect of the project development.
+- Data Structures Organization: Working with different structs for position, image, map and game made the game logic easier to understand, modify, and potentially reuse in future projects.
+# Map 🗺️
+The map needs to be constructed with the following rules:
+- Must contain these elements: WALL:``1``, FLOOR:``0``, PLAYER:``P``, COLLECTIBLE:``C``, EXIT:``E`` and, for the bonus part, ENEMY:``J``.
+- Must be rectangular and surrounded by walls.
+- Must contain a valid path, it means that the player can collect all the collectibles and reach the map exit.
+- Example of a valid map.
+  ```text
+  111111111111111
+  10001C0000000C1
+  100010010110001
+  1P00100101100E1
+  11C000010C11111
+  111111111111111
+# Game Rules 🎮
+The player starts at the spawn position ``P`` and needs to walk through the map avoiding the obstacles ``1`` and enemies (bonus) ``J``, collect all the collectibles ``C`` and reach the map exit ``E``.
 
-- `sa` (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
-- `sb` (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
-- `ss` : sa and sb at the same time.
-- `pa` (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
-- `pb` (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
-- `ra` (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
-- `rb` (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
-- `rr` : ra and rb at the same time.
-- `rra` (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
-- `rrb` (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
-- `rrr` : rra and rrb at the same time.
-#  Walkthrough 🧩
-- Error Management: The program should only accept parameters within the range of integers from the minimum to the maximum. Anything different from that it will prompt the message ``Error``, followed by a new line, and then finish the program. If no parameters are specified or the numbers provided are already sorted, the program must not display anything and give the prompt back.
-- Creating the stacks: I implemented the stacks using singly linked lists, where each node incorporates the following: the value itself, index, and cost (all integers); previous, next, and target nodes (pointers); and a boolean indicating whether the index was above the median element.
-- Developing the operations: Each operation is meticulously designed to perform specific tasks such as swapping elements, pushing elements between stacks, and rotating elements within a stack. This phase was pivotal to the project serving as a valuable learning experience in effectively managing linked lists and contributing to my understanding of data structure manipulation.
-- Sorting two elements: When only two integers are passed as arguments, the program will apply ``sa``(swap a) operation to rectify the order.
-- Sorting three elements: When only three integers are provided, a three-step process is followed. First, if the largest number is at the top, the program executes ``ra`` (rotate a) operation. Alternatively, if the largest number is in the second position, ``rra`` (reverse rotate a) operation is applied. Following these rotations, if the first element remains greater than the second, ``sa`` (swap a) operation is executed to achieve the sorting.
-- Sorting more than three elements: When dealing with more than three integers, the program applies the Turk Algorithm, as described below.
+Movement:
+- ``W`` or ⬆️ - Move the player up.
+- ``A`` or ⬅️ - Move the player to the left.
+- ``S`` or ⬇️ - Move the player down.
+- ``D`` or ➡️ - Move the player to the right.
+
+Close the window:
+- ``ESC`` or click ❌
 # Turk Algorithm ⚙️
 The Turk Algorithm was developed by another 42 student called [Ali Ogun](https://github.com/ayogun) and it is detailed in his article ["Push Swap — A journey to find most efficient sorting algorithm"](https://medium.com/@ayogun/push-swap-c1f5d2d41e97). Essentially, the algorithm functions when we have more than 3 numbers as arguments. We begin by pushing the numbers from ``stack_a`` a to ``stack_b`` until only 3 elements remain in ``stack_a``. However, we do this in descending order because later we will need to push the numbers back to ``stack_a``, and they will be automatically organized.
 
