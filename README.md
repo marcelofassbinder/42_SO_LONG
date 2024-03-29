@@ -1,4 +1,5 @@
-# 42_SO_LONG 🕹️
+<h1 align center>
+  # 42_SO_LONG 🕹️</h1>
 A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
 
 MANDATORY:
