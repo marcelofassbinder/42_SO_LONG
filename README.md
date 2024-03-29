@@ -1,12 +1,16 @@
-<h1 align center>
-  # 42_SO_LONG 🕹️</h1>
-A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
-
+<h1 align=center>
+ 42_SO_LONG 🕹️
+</h1>
+<div align=center>
+ A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
+</div>
+<h2 align=center>
 MANDATORY:
+</h2>
 
 ![so_long_demonstration](textures/so_long.gif "so_long demonstration")
 
-BONUS:
+## BONUS:
 
 ![so_long_bonus](textures/so_long.gif "so_long bonus")
 # About ✍
