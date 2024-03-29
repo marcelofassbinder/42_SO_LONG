@@ -35,17 +35,9 @@ Movement:
 
 Close the window:
 - ``ESC`` or click ❌
-# Turk Algorithm ⚙️
-The Turk Algorithm was developed by another 42 student called [Ali Ogun](https://github.com/ayogun) and it is detailed in his article ["Push Swap — A journey to find most efficient sorting algorithm"](https://medium.com/@ayogun/push-swap-c1f5d2d41e97). Essentially, the algorithm functions when we have more than 3 numbers as arguments. We begin by pushing the numbers from ``stack_a`` a to ``stack_b`` until only 3 elements remain in ``stack_a``. However, we do this in descending order because later we will need to push the numbers back to ``stack_a``, and they will be automatically organized.
-
-To achieve this efficiently, we define a target node in ``stack_b`` for every node in ``stack_a``, which will be the smallest and closest number to the node in ``stack_a`` present in ``stack_b``. If a smaller number does not exist, the target will become the highest element in ``stack_b``. After that, we calculate the "cost" of each node to be pushed to the right index in ``stack_b``. Finally, we choose the cheapest node, rotate the stack to bring the node to the top (if needed), and then push it.
-
-When only three elements are left in ``stack_a``, we begin pushing the numbers back from ``stack_b`` in a similar manner. However, the target node now becomes the highest and closest number in ``stack_a``. In case a higher number does not exist, the smallest element in ``stack_b`` will then become the target.
-
-Finally, after pushing all the elements from ``stack_b``, if necessary, we organize ``stack_a`` by rotating it until the smallest number is at the top. This ensures that all elements are sorted in ascending order, concluding the program.
 
 # Bonus ⭐
-For the bonus section, we were required to develop a program called "checker". Similar to the push_swap program, checker takes a list of integers as arguments and forms a stack with those numbers. Afterward, the program awaits instructions that will be provided on the standard input. Once all the operations are inputted, the program read line by line, employing the [get_next_line](https://github.com/marcelofassbinder/42_GET_NEXT_LINE) function, and proceeds to execute the operations on the stack.
+For the bonus section, we were required to add some extra features 
 
 After performing the provided instructions, if ``stack a`` is sorted, and ``stack b`` is empty, the program displays ``OK`` followed by a new line. In any other scenario, the checker outputs ``KO`` followed by a new line. If an error occurs, the program follows the same behavior as push_swap, printing ``Error`` and a new line.
 
