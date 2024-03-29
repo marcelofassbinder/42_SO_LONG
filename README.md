@@ -1,8 +1,13 @@
 # 42_SO_LONG 🕹️
 A 2D game developed in C, using Minilibx (a minimal X-Window library) to handle graphics and inputs.
 
+MANDATORY:
 
 ![so_long_demonstration](textures/so_long.gif "so_long demonstration")
+
+BONUS:
+
+![so_long_bonus](textures/so_long.gif "so_long bonus")
 # About ✍
 So_long consists in creating a 2 dimensional game, where the player must collect every collectible present on the map and reach the exit. To achieve that, the player is able to move in 4 directions, up, down, right and left, by pressing W, S, D and A, respectively. To develop this project, I utilized the Minilibx, which is the official graphics library of 42 School. The Minilibx provides essential tools for opening windows, creating images, and handling keyboard and mouse events. n this project, I had the freedom to choose the resources I wanted. Inspired by my favorite cartoon, SpongeBob SquarePants, I decided to incorporate elements from the show into the game. SpongeBob himself became the player character, Krabby Patty served as the collectible, his pineapple house became the exit, jellyfish were introduced as enemies, sand acted as walls, and the sea bottom formed the backdrop for the game.
 # Challenges and Learning Objectives 🧠
@@ -37,56 +42,42 @@ Close the window:
 - ``ESC`` or click ❌
 
 # Bonus ⭐
-For the bonus section, we were required to add some extra features 
-
-After performing the provided instructions, if ``stack a`` is sorted, and ``stack b`` is empty, the program displays ``OK`` followed by a new line. In any other scenario, the checker outputs ``KO`` followed by a new line. If an error occurs, the program follows the same behavior as push_swap, printing ``Error`` and a new line.
+For the bonus section, we were required to add some extra features as:
+- Creating enemies for the game.
+- Making the player lose when they touch an enemy patrol.
+- Adding some sprite animation.
+- Displaying the movement count directly on screen instead of writing it in the shell.
+- I also implemented random movement for the enemies,, by using the ``rand()`` function to generate unpreddicatble moves, making the game harder and adding an element of challenge and excitement to the gameplay.
 
 # Usage 🖥️
-To install and use push_swap, follow these steps:
+To install and play so_long, follow these steps:
+- First, make sure you have the following dependencies installed in your machine: GCC (GNU Compiler Collection), X11 libraries and development headers and Minilibx: a simple X-Window (X11R6)
 - Clone the repository:
 ```bash
-git clone git@github.com:marcelofassbinder/42_PUSH_SWAP.git
+git clone git@github.com:marcelofassbinder/42_SO_LONG.git
 ```
 - Navigate to the project directory and run ``make`` to compile the program:
 ```bash
-cd 42_PUSH_SWAP
+cd 42_SO_LONG
 make
 ```
-- Run the program providing a list of integers, for example:
+- Run the program providing a valid map, for example:
 ```bash
-./push_swap 42 24 -6 8 -50
+./so_long maps/map1.ber
 ```
-- The program will output the operations applied to sort the given numbers, for example:
-```bash
-pb
-pb
-rra
-pa
-ra
-pa
-ra
-```
-- To use the checker, do:
+You can replace the ```maps/map1.ber``` for any valid map of your choice. The program will read the input and start the game. Good luck!
+
+- To enjoy the bonus part, follow:
 ```bash
 make bonus
 ```
-- Run the program, passing a list of integers as arguments, for example:
+- Run the program providing a valid map, for example:
 ```bash
-./checker 7 -12 35 42
+./so_long_bonus maps/bonus/bonus1.ber
 ```
-- Now, give the instructions you think will sort the numbers, and press Ctrl + D to finish. For example:
- ```bash
- pb
-rra
-rra
-pa
-ra
-ra
-ra
-```
-If the operations sorted the stack, checker will print ``OK``. Otherwise ``KO``, and in case of error, ``Error``.
+You can replace the ```maps/bonus/bonus1.ber``` for any valid map of your choice. The program will read the input and start the game. Good luck!
 
-# Grade  <p><img height="30px" src="https://img.shields.io/badge/-125%20%2F%20100-success" /></p>
+# Grade  <p><img height="30px" src="https://img.shields.io/badge/-124%20%2F%20100-success" /></p>
 
 # Norminette 💂🏻
 At 42 School, we need to follow some strict rules when writing our code. These rules are described in the Norm and checked by the formidable `norminette`. Here are some of them:
